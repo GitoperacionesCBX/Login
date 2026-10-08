@@ -1,7 +1,69 @@
-<!doctype html>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=https://login.microsoftonline.com/">
-  <script>location.replace("https://login.microsoftonline.com/");
-  </script>
-  <a href="https://login.microsoftonline.com/">Ir al login de Microsoft</a>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Redirigiendo al inicio de sesión…</title>
  
+  <!-- Fallback sin JavaScript -->
+  <meta http-equiv="refresh" content="0; url=https://login.microsoftonline.com/">
+ 
+  <style>
+    :root {
+      --bg: #f3f2f1;
+      --card: #ffffff;
+      --text: #323130;
+      --muted: #605e5c;
+      --accent: #0067b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .card {
+      background: var(--card);
+      padding: 2.5rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      text-align: center;
+      max-width: 360px;
+      width: calc(100% - 2rem);
+    }
+    .spinner {
+      width: 36px; height: 36px;
+      margin: 0 auto 1.25rem;
+      border: 3px solid #e1dfdd;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    h1 { font-size: 1.1rem; font-weight: 600; margin: 0 0 .5rem; }
+    p { font-size: .9rem; color: var(--muted); margin: 0; }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="spinner" role="status" aria-label="Redirigiendo"></div>
+    <h1>Redirigiendo al inicio de sesión</h1>
+    <p>Si no se te redirige automáticamente,
+       <a id="fallback" href="https://login.microsoftonline.com/">haz clic aquí</a>.</p>
+  </main>
+ 
+  <script>
+    // Cambia solo esta línea para apuntar a otro destino de Microsoft.
+    var destino = "https://login.microsoftonline.com/";
+    document.getElementById("fallback").href = destino;
+    window.location.replace(destino);  // replace: no deja la landing en el historial
+  </script>
+</body>
+</html>
